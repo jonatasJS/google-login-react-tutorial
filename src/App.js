@@ -58,6 +58,7 @@ function App() {
 					buttonText="Continuar com o Google"
 					onSuccess={responseGoogle}
 					onFailure={responseGoogle}
+					style={{ background: '#1F2121' }}
 				/>
 			)}
 			{isError && (

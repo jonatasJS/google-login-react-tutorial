@@ -5,10 +5,11 @@
 }
 
 html {
-    background: black;
+    background: #1F2121;
 }
 
 body {
+    background: #1F2121;
     margin: 0;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
