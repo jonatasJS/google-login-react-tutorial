@@ -1,11 +1,11 @@
 import React from "react";
 
-function SearchCard(dataServer) {
+function SearchCard({ dataServer }) {
 	return (
 		<>
 			<div className="main">
 				<div>
-					<img onclick="go()" className="logo" src={dataServer?.icon} />
+					<img onclick="go()" className="logo" alt="Logo" src={dataServer?.icon} />
 					<p className="txt">
 						<span className="title" style={{ color: "#fff" }}>Minecraft Server</span>
 						<br />
@@ -23,8 +23,8 @@ function SearchCard(dataServer) {
 					</p>
 				</div>
 				<div className="players">
-					<span style={{ color: "#aaaaaa" }}>{dataServer?.players.online}/500</span>
-					<img src="https://voltzmc.vercel.app/icons/icon-server.png" />
+					<span style={{ color: "#aaaaaa" }}>{dataServer?.players.online}/{dataServer?.players.max}</span>
+					<img alt="Logo" src="https://voltzmc.vercel.app/icons/icon-server.png" />
 				</div>
 			</div>
 		</>
