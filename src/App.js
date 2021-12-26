@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
 import axios from 'axios';
 import { useEffect } from "react";
+import ServerCard from './components/ServerCard'
 
 function App() {
 	const [name, setName] = useState();
@@ -16,11 +17,11 @@ function App() {
 	useEffect(() => {
 		setInterval(() => {
 			axios.get('https://api.mcsrvstat.us/2/voltzmc.com')
-			.then(({ data }) => {
-				console.log(data)
-				setDataServer(data);
-				setIsLoaded(true);
-			});
+				.then(({ data }) => {
+					console.log(data)
+					setDataServer(data);
+					setIsLoaded(true);
+				});
 		}, 1000);
 	}, []);
 
@@ -59,38 +60,20 @@ function App() {
 					<p>{JSON.stringify(error)}</p>
 				</>
 			)}
-			{isLoaded && (
-					<div className="main">
-						<div>
-							<img onclick="go()" className="logo" src={dataServer.icon} />
-								<p className="txt">
-									<span className="title" style={{color: "#fff"}}>Minecraft Server</span>
-									<br />
-									<br />
-									<span style={{color: "#ffaa00"}}>
-										<span style={{fontWeight: "bold"}}>Voltz</span></span><span style={{color: "ffffff"}}><span style={{fontWeight: "bold"}}>MC </span></span>
-									<span style={{color: "#aaaaaa"}}>[1.8.x] </span>
-									<span style={{color: "#555555"}}>- </span>
-									<span style={{color: "#aaaaaa"}}>voltzmc.com</span>
-									<br />
-									<span style={{color: "#ffaa00"}}>
-										<span style={{fontWeight: "bold"}}>R. Overpower</span>
-									</span>
-									<span style={{color: "#aaaaaa"}}>RESETADO!</span>
-								</p>
-						</div>
-						<div className="players">
-							<span style={{color: "#aaaaaa"}}>{dataServer.players.online}/500</span>
-							<img src="https://voltzmc.vercel.app/icons/icon-server.png" />
-						</div>
-					</div>
-			)}
+			{isLoaded && <ServerCard dataServer={dataServer} />}
+			{/* {isLoaded && <SearchBar placeholder="Enter a Book Name..." data={BookData} />} */}
+			{/* <div class="wrapper">
+				<div class="search-input">
+					<input type="text" placeholder="Type to search.." />
+						<div class="autocom-box">	</div>
+						<div class="icon"><i class="fas fa-search"></i></div>
+				</div>
+			</div> */}
 			<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
 				{isLoaded && dataServer.players.list.map(player => (
-					<div>
+					<div style={{ display: 'flex', gap: '10px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
 						<img src={`https://mc-heads.net/avatar/${player}/99.png`} />
-						<br />
-						<span>Player: {player} </span>
+						<span>Player: <strong>{player}</strong> </span>
 					</div>
 				))}
 			</div>
